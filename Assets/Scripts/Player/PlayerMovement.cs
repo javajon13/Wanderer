@@ -15,32 +15,70 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 movement;
     private CharacterController controller;
 
+    private Camera cam;
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+
+        // TC: cache the camera reference
+        cam = Camera.main;
     }
 
     //read movement inputs
     private void OnMove(InputValue value)
     {
-        movement.x = value.Get<Vector2>().x;
-        movement.z = value.Get<Vector2>().y;
-        movement = movement.normalized;
+        // TC: store the movement vector in one single get and normalize call
+        movement = value.Get<Vector2>().normalized;
+
+        //movement.x = value.Get<Vector2>().x;
+        //movement.z = value.Get<Vector2>().y;
+        //movement = movement.normalized;
     }
 
     //move
     private void Update()
     {
-        //Apply movement
-        AlignMovement(movement);
-        controller.Move(new Vector3(movement.x, 0f, movement.z) * moveSpeed * Time.deltaTime);
+        var finalMovement = CalculateMovementVector();
+        controller.Move(finalMovement);
+        RotatePlayerGFX(finalMovement);
 
-        if(movement != Vector3.zero && playerModel != null)
+
+        ////Apply movement
+        //AlignMovement(movement);
+        //controller.Move(new Vector3(movement.x, 0f, movement.z) * moveSpeed * Time.deltaTime);
+
+        //if (movement != Vector3.zero && playerModel != null)
+        //{
+        //    //Rotate the player model towards the movement direction
+        //    Quaternion targetRotation = Quaternion.LookRotation(new Vector3(movement.x, 0, movement.z), Vector3.up);
+        //    playerModel.transform.rotation = Quaternion.Lerp(playerModel.transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        //}
+    }
+
+    private void RotatePlayerGFX(Vector3 finalMovement)
+    {
+        // TC: Rotate the player model towards the movement direction
+        if (finalMovement != Vector3.zero)
         {
-            //Rotate the player model towards the movement direction
-            Quaternion targetRotation = Quaternion.LookRotation(new Vector3(movement.x, 0, movement.z), Vector3.up);
-            playerModel.transform.rotation = Quaternion.Lerp(playerModel.transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            Quaternion targetRotation = Quaternion.LookRotation(finalMovement);
+            targetRotation.x = 0;
+            targetRotation.z = 0;
+
+            float step = rotationSpeed / Quaternion.Angle(playerModel.transform.rotation, targetRotation);
+            playerModel.transform.rotation = Quaternion.Lerp(playerModel.transform.rotation, targetRotation, step * Time.deltaTime);
         }
+    }
+
+    private Vector3 CalculateMovementVector()
+    {
+        // TC: Move character in the direction of the camera facing, allowing for strafe movement
+        // note: movement.y is the forward/backward input because we are converting value.Get<Vector2>() directly to a Vector3
+        Vector3 forwardMovement = movement.y * cam.transform.forward;
+        Vector3 rightMovement = movement.x * cam.transform.right;
+        Vector3 finalMovement = (forwardMovement + rightMovement) * moveSpeed * Time.deltaTime;
+
+        return finalMovement;
     }
 
     public void AlignMovement(Vector3 movementToAlign)
