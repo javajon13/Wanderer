@@ -388,7 +388,7 @@ Transform:
   m_GameObject: {fileID: 81040050}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_LocalScale: {x: 100, y: 1, z: 100}
   m_Children: []
   m_Father: {fileID: 1622638120}
   m_RootOrder: 0
@@ -750,8 +750,8 @@ GameObject:
   - component: {fileID: 829924074}
   - component: {fileID: 829924071}
   - component: {fileID: 829924070}
-  - component: {fileID: 829924075}
   - component: {fileID: 829924076}
+  - component: {fileID: 829924075}
   - component: {fileID: 829924072}
   - component: {fileID: 829924073}
   m_Layer: 0
@@ -855,7 +855,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  rotationSpeed: 50
+  rotationSpeed: 60
   playerModel: {fileID: 740938812}
   groundDetector: {fileID: 116146051}
 --- !u!114 &829924076
@@ -882,7 +882,27 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6aa8552c-ae6e-4ac8-bea7-52bf469707e6
+    m_ActionName: PlayerMovement/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6c95c973-37a2-46dc-b155-65d28a6816ed
+    m_ActionName: PlayerMovement/RotateCamera[/Mouse/delta]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerMovement
