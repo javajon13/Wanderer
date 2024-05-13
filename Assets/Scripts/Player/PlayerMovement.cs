@@ -65,8 +65,8 @@ public class PlayerMovement : MonoBehaviour
             targetRotation.x = 0;
             targetRotation.z = 0;
 
-            //float step = rotationSpeed / Quaternion.Angle(playerModel.transform.rotation, targetRotation);
-            playerModel.transform.rotation = Quaternion.Lerp(playerModel.transform.rotation, targetRotation, Time.deltaTime);
+            float step = rotationSpeed / Quaternion.Angle(playerModel.transform.rotation, targetRotation);
+            playerModel.transform.rotation = Quaternion.Lerp(playerModel.transform.rotation, targetRotation, step * Time.deltaTime);
         }
     }
 
@@ -74,10 +74,8 @@ public class PlayerMovement : MonoBehaviour
     {
         // TC: Move character in the direction of the camera facing, allowing for strafe movement
         // note: movement.y is the forward/backward input because we are converting value.Get<Vector2>() directly to a Vector3
-        Vector3 camForward = cam.transform.forward;
-        camForward.y = 0f;
-        Vector3 forwardMovement = movement.y * camForward;
-        Vector3 rightMovement = movement.x * cam.transform.right;
+        var forwardMovement = movement.y * new Vector3(cam.transform.forward.x, 0f, cam.transform.forward.z);
+        var rightMovement = movement.x * new Vector3(cam.transform.right.x, 0f, cam.transform.right.z);
         Vector3 finalMovement = (forwardMovement + rightMovement) * moveSpeed * Time.deltaTime;
         Debug.Log("Forward: " + forwardMovement + ", Right: " + rightMovement + ", Final: " + finalMovement);
 

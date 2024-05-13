@@ -855,7 +855,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  rotationSpeed: 60
+  rotationSpeed: 2000
   playerModel: {fileID: 740938812}
   groundDetector: {fileID: 116146051}
 --- !u!114 &829924076
