@@ -65,8 +65,8 @@ public class PlayerMovement : MonoBehaviour
             targetRotation.x = 0;
             targetRotation.z = 0;
 
-            // float step = rotationSpeed / Quaternion.Angle(playerModel.transform.rotation, targetRotation);
-            playerModel.transform.rotation = Quaternion.Lerp(playerModel.transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            float step = rotationSpeed / Quaternion.Angle(playerModel.transform.rotation, targetRotation);
+            playerModel.transform.rotation = Quaternion.Lerp(playerModel.transform.rotation, targetRotation, step * Time.deltaTime);
         }
     }
 
@@ -76,10 +76,12 @@ public class PlayerMovement : MonoBehaviour
         // note: movement.y is the forward/backward input because we are converting value.Get<Vector2>() directly to a Vector3
         Vector3 camForward = cam.transform.forward;
         camForward.y = 0f;
-        camForward.z = camForward.z > 0 ? 1 : -1;
+        //camForward.z = camForward.z > 0 ? 1 : -1;
+        camForward = camForward.normalized;
         Vector3 forwardMovement = movement.y * camForward;
         Vector3 rightMovement = movement.x * cam.transform.right;
         Vector3 finalMovement = (forwardMovement + rightMovement);
+        Debug.Log(camForward);
 
         return finalMovement;
     }
