@@ -7,18 +7,27 @@
             "actions": [
                 {
                     "name": "Move",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "6aa8552c-ae6e-4ac8-bea7-52bf469707e6",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "RotateCamera",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "6c95c973-37a2-46dc-b155-65d28a6816ed",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ResetCamera",
+                    "type": "Button",
+                    "id": "8c8bf661-4fe7-4433-8adc-d90472049c66",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -140,9 +149,42 @@
                     "id": "a4f4a4db-f6d9-4d11-9281-01d60c604e42",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
-                    "processors": "StickDeadzone,NormalizeVector2",
+                    "processors": "StickDeadzone",
                     "groups": "",
                     "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "435af961-b7d2-4fc1-8214-6550e9782993",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "efc5e093-c4ab-4133-88dc-bbeb58930d02",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f08346e1-f9bb-46ea-a1dd-ee4951a92acd",
+                    "path": "<Keyboard>/rightShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetCamera",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -152,17 +194,6 @@
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "StickDeadzone",
-                    "groups": "",
-                    "action": "RotateCamera",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "435af961-b7d2-4fc1-8214-6550e9782993",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "NormalizeVector2",
                     "groups": "",
                     "action": "RotateCamera",
                     "isComposite": false,

@@ -22,7 +22,7 @@ public class PlayerJump : MonoBehaviour
         controller = GetComponent<CharacterController>();
     }
 
-    private void Update()
+    public void UpdateJump()
     {
         if(InputHandler.Instance.GetInputs(0).Contains("Jump"))
         {

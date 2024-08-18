@@ -13,19 +13,29 @@ public class CameraRotation : MonoBehaviour
     [SerializeField]private float maxY;
     [SerializeField]private float minY;
 
+    private Transform playerModel;
+
     private void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        playerModel = GetComponent<PlayerMovement>().playerModel;
     }
 
     private void OnRotateCamera(InputValue value)
     {
         cameraRotation.x = value.Get<Vector2>().x;
         cameraRotation.y = value.Get<Vector2>().y;
-        cameraRotation = cameraRotation.normalized;
         
-        RotateCamera(cameraRotation);
+        //RotateCamera(cameraRotation);
+    }
+
+    private void OnResetCamera(InputValue value)
+    {
+        cameraRotationValue.x = 0f;
+        cameraRotationValue.y = playerModel.localEulerAngles.y;
+        //RotateCamera(new Vector2(0, 0));
     }
 
     private void RotateCamera(Vector2 rotationVector)

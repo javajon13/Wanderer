@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -25,21 +24,10 @@ public class PlayerMovement : MonoBehaviour
         cam = Camera.main;
     }
 
-    //read movement inputs
-    private void OnMove(InputValue value)
-    {
-        // TC: store the movement vector in one single get and normalize call
-        movement = value.Get<Vector2>().normalized;
-
-        //movement.x = value.Get<Vector2>().x;
-        //movement.z = value.Get<Vector2>().y;
-        //movement = movement.normalized;
-    }
-
     //move
-    private void Update()
+    public void UpdateMovement(Vector2 movement)
     {
-        var finalMovement = CalculateMovementVector();
+        var finalMovement = CalculateMovementVector(movement);
         controller.Move(moveSpeed * Time.deltaTime * finalMovement);
         RotatePlayerGFX(finalMovement);
 
@@ -70,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private Vector3 CalculateMovementVector()
+    private Vector3 CalculateMovementVector(Vector2 movement)
     {
         // TC: Move character in the direction of the camera facing, allowing for strafe movement
         // note: movement.y is the forward/backward input because we are converting value.Get<Vector2>() directly to a Vector3
@@ -81,7 +69,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 forwardMovement = movement.y * camForward;
         Vector3 rightMovement = movement.x * cam.transform.right;
         Vector3 finalMovement = (forwardMovement + rightMovement);
-        Debug.Log(camForward);
 
         return finalMovement;
     }

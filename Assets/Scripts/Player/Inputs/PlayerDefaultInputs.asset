@@ -31,4 +31,12 @@ MonoBehaviour:
         m_Groups: 
         m_Action: Input
         m_Flags: 0
+      - m_Name: 
+        m_Id: 82dfca3f-61d5-40da-82fe-6cad7447eeaa
+        m_Path: <Gamepad>/buttonEast
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Input
+        m_Flags: 0
       m_Flags: 0
