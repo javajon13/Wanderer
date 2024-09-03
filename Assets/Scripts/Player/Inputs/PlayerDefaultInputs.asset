@@ -40,3 +40,57 @@ MonoBehaviour:
         m_Action: Input
         m_Flags: 0
       m_Flags: 0
+  - buttonName: Attack
+    customBufferTime: 0.01
+    inputAction:
+      m_Name: Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 1833ec82-9619-475c-b6e7-16cd4b0a7b3f
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: a69b9983-51a0-49df-b18a-b591392f31b2
+        m_Path: <Keyboard>/o
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Input
+        m_Flags: 0
+      - m_Name: 
+        m_Id: 5bf7fdca-dedf-4cbd-ab3f-0dbd8c0b1d5d
+        m_Path: <Mouse>/leftButton
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Input
+        m_Flags: 0
+      m_Flags: 0
+  - buttonName: Parry
+    customBufferTime: 0.01
+    inputAction:
+      m_Name: Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 1833ec82-9619-475c-b6e7-16cd4b0a7b3f
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 5c4f0f27-8515-4dd8-bb31-9a375c6638a9
+        m_Path: <Keyboard>/p
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Input
+        m_Flags: 0
+      - m_Name: 
+        m_Id: be7c52af-ef9f-4015-b028-7c2d95c8bb8a
+        m_Path: <Mouse>/rightButton
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Input
+        m_Flags: 0
+      m_Flags: 0
