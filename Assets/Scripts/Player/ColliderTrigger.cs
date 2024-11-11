@@ -9,6 +9,11 @@ public class ColliderTrigger : MonoBehaviour
 
     private int collidedObjects = 0;
 
+    public bool isColliding()
+    {
+        return false;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == collisionTag)

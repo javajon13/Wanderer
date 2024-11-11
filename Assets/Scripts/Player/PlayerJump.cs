@@ -11,8 +11,12 @@ public class PlayerJump : MonoBehaviour
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
 
-    private float yVelocity;
+    public float yVelocity;
     private bool canJump = true;
+    private bool canHover = true;
+    private bool isHovering = false;
+    private float hoverTimeAmount = 0.2f;
+    private float hoverTime;
 
     private CharacterController controller;
     public ColliderTrigger groundDetector;
@@ -22,8 +26,28 @@ public class PlayerJump : MonoBehaviour
         controller = GetComponent<CharacterController>();
     }
 
+    public void Hover()
+    {
+        if(!canHover) return;
+        if(yVelocity > 0f) return;
+        yVelocity = 0f;
+        hoverTime = hoverTimeAmount;
+        canHover = false;
+        isHovering = true;
+    }
+
     public void UpdateJump()
     {
+        if(isHovering)
+        {
+            hoverTime -= Time.deltaTime;
+            if(hoverTime <= 0f)
+            {
+                isHovering = false;
+            }
+        }
+        if(isHovering) return;
+
         if(InputHandler.Instance.GetInputs(0).Contains("Jump"))
         {
             if(groundDetector.isTriggered && canJump)
@@ -50,6 +74,7 @@ public class PlayerJump : MonoBehaviour
         } else
         {
             canJump = true;
+            canHover = true;
         }
 
         controller.Move(Vector3.up * yVelocity * Time.deltaTime);

@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
         //}
     }
 
-    private void RotatePlayerGFX(Vector3 finalMovement)
+    public void RotatePlayerGFX(Vector3 finalMovement, bool isInstant = false)
     {
         // TC: Rotate the player model towards the movement direction
         if (finalMovement != Vector3.zero)
@@ -54,11 +54,17 @@ public class PlayerMovement : MonoBehaviour
             targetRotation.z = 0;
 
             float step = rotationSpeed / Quaternion.Angle(playerModel.transform.rotation, targetRotation);
-            playerModel.transform.rotation = Quaternion.Lerp(playerModel.transform.rotation, targetRotation, step * Time.deltaTime);
+            if(isInstant)
+            {
+                playerModel.transform.rotation = targetRotation;
+            } else
+            {
+                playerModel.transform.rotation = Quaternion.Lerp(playerModel.transform.rotation, targetRotation, step * Time.deltaTime);
+            }
         }
     }
 
-    private Vector3 CalculateMovementVector(Vector2 movement)
+    public Vector3 CalculateMovementVector(Vector2 movement)
     {
         // TC: Move character in the direction of the camera facing, allowing for strafe movement
         // note: movement.y is the forward/backward input because we are converting value.Get<Vector2>() directly to a Vector3

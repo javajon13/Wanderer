@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
+    //STATIC HERE \/
     private static InputHandler instance;
 
     public static InputHandler Instance { get { return instance; } }
@@ -18,12 +19,13 @@ public class InputHandler : MonoBehaviour
             instance = this;
         }
     }
+    //END OF STATIC IMPLEMENTATION
 
     [SerializeField]private float defaultBufferTime = 0.2f;
 
     [SerializeField]private List<ActiveInputList> activePlayers = new List<ActiveInputList>();
 
-    public List<string> GetInputs(int playerNumber)
+    public List<string> GetInputs(int playerNumber = 0)
     {
         List<string> returnInputs = new List<string>();
         for(int i = 0; i < activePlayers[playerNumber].activeInputs.Count; i++)
@@ -32,7 +34,7 @@ public class InputHandler : MonoBehaviour
         }
         return returnInputs;
     }
-    public List<string> GetHeldInputs(int playerNumber)
+    public List<string> GetHeldInputs(int playerNumber = 0)
     {
         List<string> returnInputs = new List<string>();
         for(int i = 0; i < activePlayers[playerNumber].heldInputs.Count; i++)
@@ -40,6 +42,17 @@ public class InputHandler : MonoBehaviour
             returnInputs.Add(activePlayers[playerNumber].heldInputs[i].GetInputName());
         }
         return returnInputs;
+    }
+
+    public void RemoveInput(string inputName, int playerNumber = 0)
+    {
+        for(int i = 0; i < activePlayers[playerNumber].activeInputs.Count; i++)
+        {
+            if(activePlayers[playerNumber].activeInputs[i].GetInputName() == inputName)
+            {
+                activePlayers[playerNumber].activeInputs.Remove(activePlayers[playerNumber].activeInputs[i]);
+            }
+        }
     }
 
     public void CheckInputs()

@@ -28,7 +28,7 @@ public class CameraRotation : MonoBehaviour
         cameraRotation.x = value.Get<Vector2>().x;
         cameraRotation.y = value.Get<Vector2>().y;
         
-        //RotateCamera(cameraRotation);
+        RotateCamera(cameraRotation);
     }
 
     private void OnResetCamera(InputValue value)
@@ -40,8 +40,8 @@ public class CameraRotation : MonoBehaviour
 
     private void RotateCamera(Vector2 rotationVector)
     {
-        cameraRotationValue.x -= rotationVector.y * rotationSpeed * Time.deltaTime;
-        cameraRotationValue.y += rotationVector.x * rotationSpeed * Time.deltaTime;
+        cameraRotationValue.x -= rotationVector.y * rotationSpeed * Time.fixedDeltaTime;
+        cameraRotationValue.y += rotationVector.x * rotationSpeed * Time.fixedDeltaTime;
 
         cameraRotationValue.x = Mathf.Clamp(cameraRotationValue.x, minY, maxY);
         if(cameraRotationValue.y > 360f) cameraRotationValue.y = 0f;

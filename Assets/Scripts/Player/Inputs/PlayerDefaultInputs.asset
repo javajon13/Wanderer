@@ -41,7 +41,7 @@ MonoBehaviour:
         m_Flags: 0
       m_Flags: 0
   - buttonName: Attack
-    customBufferTime: 0.01
+    customBufferTime: 0.2
     inputAction:
       m_Name: Input
       m_Type: 0
@@ -66,9 +66,17 @@ MonoBehaviour:
         m_Groups: 
         m_Action: Input
         m_Flags: 0
+      - m_Name: 
+        m_Id: bfae574b-2d62-47b6-b885-0dfc4d1afa8f
+        m_Path: <Gamepad>/buttonSouth
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Input
+        m_Flags: 0
       m_Flags: 0
-  - buttonName: Parry
-    customBufferTime: 0.01
+  - buttonName: Defend
+    customBufferTime: 0.1
     inputAction:
       m_Name: Input
       m_Type: 0
@@ -88,6 +96,14 @@ MonoBehaviour:
       - m_Name: 
         m_Id: be7c52af-ef9f-4015-b028-7c2d95c8bb8a
         m_Path: <Mouse>/rightButton
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Input
+        m_Flags: 0
+      - m_Name: 
+        m_Id: 12063f43-8649-42fc-98de-54a6516ef76f
+        m_Path: <Gamepad>/buttonWest
         m_Interactions: 
         m_Processors: 
         m_Groups: 
