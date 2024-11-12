@@ -20,6 +20,15 @@ public class PlayerAttack : MonoBehaviour
 
     private float attackTime;
 
+    public GameObject lance;
+    private BoxCollider attackCollider;
+    void Start(){
+        attackCollider = lance.GetComponent<BoxCollider>();
+        attackCollider.enabled = false;
+    
+        
+    }
+
     public void InitializeAttack(bool isFirstAttack = false)
     {
         //set combo index to 0
@@ -43,13 +52,15 @@ public class PlayerAttack : MonoBehaviour
 
         if(myState == PlayerAttackState.Active)
         {
-            if(attackTime >= attackTimeAmountWhenHitboxTriggers)
+            
+        /*if(attackTime >= attackTimeAmountWhenHitboxTriggers)
             {
                 hitbox.SetActive(true);
             } else
             {
                 hitbox.SetActive(false);
             }
+        */
             if(attackTime >= attackTimeAmountWhenHitboxEnds)
             {
                 myState = PlayerAttackState.Cooldown;
@@ -57,7 +68,7 @@ public class PlayerAttack : MonoBehaviour
         }
         if(myState == PlayerAttackState.Cooldown)
         {
-            hitbox.SetActive(false);
+            //hitbox.SetActive(false);
 
             if(comboIndex < comboCount)
             {
@@ -79,7 +90,7 @@ public class PlayerAttack : MonoBehaviour
             }
         }
     }
-
+    
     public bool GetIsFinished()
     {
         return isFinished;

@@ -97,6 +97,7 @@ public class PlayerStateController : MonoBehaviour
         }
         if(myState == PlayerState.Attacking)
         {
+            animator.SetBool("AttackIsPressed", true);
             canUpdateMovement = false;
             if(groundDetector.isTriggered)
             {
@@ -112,6 +113,8 @@ public class PlayerStateController : MonoBehaviour
             {
                 myState = PlayerState.Neutral;
             }
+        } else {
+            animator.SetBool("AttackIsPressed", false);
         }
         if(myState == PlayerState.Parrying)
         {
