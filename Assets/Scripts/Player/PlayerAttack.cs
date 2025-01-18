@@ -5,6 +5,11 @@ using UnityEngine;
 public enum PlayerAttackState {Active, Cooldown}
 public class PlayerAttack : MonoBehaviour
 {
+    //Animations
+    [SerializeField]private Animation attack1;
+    [SerializeField]private Animation attack2;
+    [SerializeField]private Animation finisher1;
+
     public GameObject hitbox;
     private bool isFinished = false;
     private PlayerAttackState myState;
@@ -25,8 +30,6 @@ public class PlayerAttack : MonoBehaviour
     void Start(){
         attackCollider = lance.GetComponent<BoxCollider>();
         attackCollider.enabled = false;
-    
-        
     }
 
     public void InitializeAttack(bool isFirstAttack = false)
